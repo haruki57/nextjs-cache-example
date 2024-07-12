@@ -1,11 +1,17 @@
+import { revalidatePath } from "next/cache";
+
 export default async function Page() {
   const submissions = await fetch(
-    "https://kenkoooo.com/atcoder/atcoder-api/v3/from/1720766070"
+    "https://kenkoooo.com/atcoder/atcoder-api/v3/from/1720766070",
+    { next: { revalidate: 60 } }
   );
   const seasons = await fetch(
-    "https://daily-smashmate.harukisb.net/api/seasons"
+    "https://daily-smashmate.harukisb.net/api/seasons",
+    { next: { revalidate: 60 } }
   );
-  const currentTime = await fetch(`${process.env.VERCEL_URL}/api/currentTime`);
+  const currentTime = await fetch(`${process.env.VERCEL_URL}/api/currentTime`, {
+    next: { revalidate: 60 },
+  });
 
   return (
     <main className="flex min-h-screen flex-col p-6">
