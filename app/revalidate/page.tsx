@@ -9,16 +9,18 @@ export default async function Page() {
     "https://daily-smashmate.harukisb.net/api/seasons",
     { next: { revalidate: 60 } }
   );
-  /*const currentTime = await fetch(`${process.env.VERCEL_URL}/api/currentTime`, {
-    next: { revalidate: 60 },
-  });
-  */
+  const currentTime = await fetch(
+    "https://nextjs-cache-example.vercel.app/api/currentTime",
+    {
+      next: { revalidate: 60 },
+    }
+  );
 
   return (
     <main className="flex min-h-screen flex-col p-6">
       <div>{(await submissions.json()).length}</div>
       <div>{JSON.stringify(await seasons.json())}</div>
-      {/* <div>{JSON.stringify(await currentTime.json())}</div> */}
+      <div>{JSON.stringify(await currentTime.json())}</div>
     </main>
   );
 }
