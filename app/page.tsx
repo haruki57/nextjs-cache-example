@@ -5,7 +5,9 @@ export default async function Page() {
   const seasons = await fetch(
     "https://daily-smashmate.harukisb.net/api/seasons"
   );
-  const currentTime = await fetch(`${process.env.VERCEL_URL}/api/currentTime`);
+  const currentTime = await fetch(
+    `https://${process.env.VERCEL_URL}/api/currentTime`
+  );
 
   return (
     <main className="flex min-h-screen flex-col p-6">
